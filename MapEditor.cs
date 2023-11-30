@@ -2926,21 +2926,21 @@ namespace MapEditor
             rotXitem.OnListChanged += (item, index) =>
             {
                 var change = GetSafeFloat(item.Items[index].ToString(), ent.Rotation.X);
-                ent.Quaternion = new Vector3(change, ent.Rotation.Y, ent.Rotation.Z).ToQuaternion();
+                ent.Rotation = new Vector3(change, ent.Rotation.Y, ent.Rotation.Z);
                 _changesMade++;
             };
 
             rotZitem.OnListChanged += (item, index) =>
             {
                 var change = GetSafeFloat(item.Items[index].ToString(), ent.Rotation.Z);
-                ent.Quaternion = new Vector3(ent.Rotation.X, ent.Rotation.Y, change).ToQuaternion();
+                ent.Rotation = new Vector3(ent.Rotation.X, ent.Rotation.Y, change);
                 _changesMade++;
             };
             
             rotYitem.OnListChanged += (item, index) =>
             {
                 var change = GetSafeFloat(item.Items[index].ToString(), ent.Rotation.Y);
-                ent.Quaternion = new Vector3(ent.Rotation.X, change, ent.Rotation.Z).ToQuaternion();
+                ent.Rotation = new Vector3(ent.Rotation.X, change, ent.Rotation.Z);
                 _changesMade++;
             };
 
