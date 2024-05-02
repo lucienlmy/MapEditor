@@ -2771,6 +2771,7 @@ namespace MapEditor
                     ((Ped)ent).Weapons.RemoveAll();
                     if(PropStreamer.ActiveWeapons[ent.Handle] == WeaponHash.Unarmed) return;
                     ((Ped) ent).Weapons.Give(PropStreamer.ActiveWeapons[ent.Handle], 999, true, true);
+                    ((Ped) ent).Weapons.Select(PropStreamer.ActiveWeapons[ent.Handle]);
                 };
                 _objectInfoMenu.AddItem(wepItem);
             }
