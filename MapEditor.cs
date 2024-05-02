@@ -771,6 +771,7 @@ namespace MapEditor
                                 if (o.Weapon != WeaponHash.Unarmed)
                                 {
                                     pedid.Weapons.Give(o.Weapon.Value, 999, true, true);
+                                    pedid.Weapons.Select(o.Weapon.Value);
                                 }
                             }
                             break;
