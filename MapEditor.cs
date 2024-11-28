@@ -104,7 +104,7 @@ namespace MapEditor
 
             try
             {
-                Translation.Load("scripts\\MapEditor", _settings.Translation);
+                Translation.Load("scripts\\MapEditor\\language", _settings.Translation);
             }
             catch (Exception e) 
             {
@@ -125,28 +125,28 @@ namespace MapEditor
 
             _objectsMenu = new UIMenu("Map Editor", "~b~" + Translation.Translate("PLACE OBJECT"));
             
-            ObjectDatabase.LoadFromFile("scripts\\ObjectList.ini", ref ObjectDatabase.MainDb);
+            ObjectDatabase.LoadFromFile("scripts\\MapEditor\\ObjectList.ini", ref ObjectDatabase.MainDb);
             ObjectDatabase.LoadInvalidHashes();
-            ObjectDatabase.LoadFromFile("scripts\\PedList.ini", ref ObjectDatabase.PedDb);
+            ObjectDatabase.LoadFromFile("scripts\\MapEditor\\PedList.ini", ref ObjectDatabase.PedDb);
             if (ObjectDatabase.PedDb.Count == 0)
                 foreach (string name in Enum.GetNames(typeof(PedHash)))
                     ObjectDatabase.PedDb.Add(name, (int)(PedHash)Enum.Parse(typeof(PedHash), name));
-            ObjectDatabase.LoadFromFile("scripts\\VehicleList.ini", ref ObjectDatabase.VehicleDb);
+            ObjectDatabase.LoadFromFile("scripts\\MapEditor\\VehicleList.ini", ref ObjectDatabase.VehicleDb);
             if (ObjectDatabase.VehicleDb.Count == 0)
                 foreach (string name in Enum.GetNames(typeof(VehicleHash)))
                     ObjectDatabase.VehicleDb.Add(name, (int)(VehicleHash)Enum.Parse(typeof(VehicleHash), name));
 
 
-            _crosshairPath = Path.GetFullPath("scripts\\MapEditor\\crosshair.png");
-            _crosshairBluePath = Path.GetFullPath("scripts\\MapEditor\\crosshair_blue.png");
-            _crosshairYellowPath = Path.GetFullPath("scripts\\MapEditor\\crosshair_yellow.png");
+            _crosshairPath = Path.GetFullPath("scripts\\MapEditor\\language\\crosshair.png");
+            _crosshairBluePath = Path.GetFullPath("scripts\\MapEditor\\language\\crosshair_blue.png");
+            _crosshairYellowPath = Path.GetFullPath("scripts\\MapEditor\\language\\crosshair_yellow.png");
 
-            if (!File.Exists("scripts\\MapEditor\\crosshair.png"))
-                _crosshairPath = Sprite.WriteFileFromResources(Assembly.GetExecutingAssembly(), "MapEditor.crosshair.png", "scripts\\MapEditor\\crosshair.png");
-            if (!File.Exists("scripts\\MapEditor\\crosshair_blue.png"))
-                _crosshairBluePath = Sprite.WriteFileFromResources(Assembly.GetExecutingAssembly(), "MapEditor.crosshair_blue.png", "scripts\\MapEditor\\crosshair_blue.png");
-            if (!File.Exists("scripts\\MapEditor\\crosshair_yellow.png"))
-                _crosshairYellowPath = Sprite.WriteFileFromResources(Assembly.GetExecutingAssembly(), "MapEditor.crosshair_yellow.png", "scripts\\MapEditor\\crosshair_yellow.png");
+            if (!File.Exists("scripts\\MapEditor\\language\\crosshair.png"))
+                _crosshairPath = Sprite.WriteFileFromResources(Assembly.GetExecutingAssembly(), "MapEditor.crosshair.png", "scripts\\MapEditor\\language\\crosshair.png");
+            if (!File.Exists("scripts\\MapEditor\\language\\crosshair_blue.png"))
+                _crosshairBluePath = Sprite.WriteFileFromResources(Assembly.GetExecutingAssembly(), "MapEditor.crosshair_blue.png", "scripts\\MapEditor\\language\\crosshair_blue.png");
+            if (!File.Exists("scripts\\MapEditor\\language\\crosshair_yellow.png"))
+                _crosshairYellowPath = Sprite.WriteFileFromResources(Assembly.GetExecutingAssembly(), "MapEditor.crosshair_yellow.png", "scripts\\MapEditor\\language\\crosshair_yellow.png");
 
 
             RedrawObjectsMenu();
@@ -576,10 +576,10 @@ namespace MapEditor
 
         private void LoadSettings()
         {
-            if (File.Exists("scripts\\MapEditor.xml"))
+            if (File.Exists("scripts\\MapEditor\\MapEditor.xml"))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-                var file = new StreamReader("scripts\\MapEditor.xml");
+                var file = new StreamReader("scripts\\MapEditor\\MapEditor.xml");
                 _settings = (Settings) serializer.Deserialize(file);
                 file.Close();
                 if (_settings.ActivationKey == Keys.None)
@@ -611,7 +611,7 @@ namespace MapEditor
         private void SaveSettings()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-            var file = new StreamWriter("scripts\\MapEditor.xml");
+            var file = new StreamWriter("scripts\\MapEditor\\MapEditor.xml");
             serializer.Serialize(file, _settings);
             file.Close();
         }
